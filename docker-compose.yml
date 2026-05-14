@@ -27,7 +27,7 @@ services:
       retries: 10
 
   ewm-service:
-    build: ./main-service
+    build: ./ewm-service
     container_name: ewm-main-service
     depends_on:
       - ewm-db
