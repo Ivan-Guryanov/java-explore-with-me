@@ -23,7 +23,8 @@ services:
       test: [ "CMD-SHELL", "pg_isready -U user -d stats" ]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
+      start_period: 15s
 
   ewm-service:
     build: ./ewm-service
