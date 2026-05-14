@@ -36,7 +36,7 @@
 <span style="color: #cf222e; font-weight: bold;">   │       ├── schema.sql (Схема БД: users, categories, events, requests, compilations)</span>
 <span style="color: #cf222e; font-weight: bold;">   │       └── application.properties (Настройки порта 8080 и подключения к DB)</span>
 <span style="color: #cf222e; font-weight: bold;">   │
-<span style="color: #0969da; font-weight: bold;">   ├── stats-service (Микросервис статистики)</span>
+<span style="color: #0969da; font-weight: bold;">   ├── stats-server (Микросервис статистики)</span>
 <span style="color: #2ea44f; font-weight: bold;">   │   ├── pom.xml (Агрегатор модулей статистики: dto, client, server)</span>
 <span style="color: #2ea44f; font-weight: bold;">   │   │</span>
 <span style="color: #2ea44f; font-weight: bold;">   │   ├── stats-dto (Общий модуль с объектами передачи данных)</span>
