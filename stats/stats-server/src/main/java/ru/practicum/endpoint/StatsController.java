@@ -30,7 +30,7 @@ public class StatsController {
     public List<ViewStatsDto> getStats(@RequestParam(name = "start") String start,
                                        @RequestParam(name = "end") String end,
                                        @RequestParam(name = "uris", required = false) List<String> uris,
-                                       @RequestParam(name = "unique") boolean unique,
+                                       @RequestParam(defaultValue = "false") boolean unique,
                                        HttpServletRequest request) {
         log.info("Получен запрос на получение статистики");
         System.out.println(request.getRequestURL().append("?").append(request.getQueryString()));
