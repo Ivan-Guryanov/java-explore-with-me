@@ -8,6 +8,7 @@ import ru.practicum.dto.ViewStatsDto;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,15 @@ public class StatsServiceImpl {
         LocalDateTime startTime = LocalDateTime.parse(start, FORMATTER);
         LocalDateTime endTime = LocalDateTime.parse(end, FORMATTER);
 
-        List<EndpointHit> allHits = statsRepository.findByUriInAndTimestampBetween(uris, startTime, endTime);
+        List<EndpointHit> allHits = new ArrayList<>();
+
+        if (uris != null && !uris.isEmpty()) {
+            allHits = statsRepository.findByUriInAndTimestampBetween(uris, startTime, endTime);
+        } else {
+            allHits = statsRepository.findByTimestampBetween(startTime, endTime);
+        }
+
+
 
         if (unique) {
             allHits = allHits.stream()

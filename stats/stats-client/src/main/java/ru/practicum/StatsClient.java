@@ -27,7 +27,7 @@ public class StatsClient {
     }
 
     public ResponseEntity<Void> saveHit(EndpointHitDto endpointHitDto) {
-ResponseEntity<Void> response = restTemplate.postForEntity("/hit", endpointHitDto, Void.class);
+        ResponseEntity<Void> response = restTemplate.postForEntity("/hit", endpointHitDto, Void.class);
 
         return response;
     }
@@ -37,11 +37,9 @@ ResponseEntity<Void> response = restTemplate.postForEntity("/hit", endpointHitDt
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/stats")
                 .queryParam("start", start)
                 .queryParam("end", end)
-                .queryParam("unique", unique);
+                .queryParam("unique", unique)
+                .queryParam("uris", uris);
 
-        if (uris != null && !uris.isEmpty()) {
-            builder.queryParam("uris", String.join(",", uris));
-        }
         return restTemplate.exchange(
                 builder.toUriString(),
                 HttpMethod.GET,
