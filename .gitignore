@@ -1,0 +1,13 @@
+/stats/stats-server/target/classes/application.properties
+/stats/stats-server/target/classes/ru/practicum/endpoint/EndpointHit$EndpointHitBuilder.class
+/stats/stats-server/target/classes/ru/practicum/endpoint/EndpointHit.class
+/stats/stats-dto/target/classes/ru/practicum/dto/EndpointHitDto$EndpointHitDtoBuilder.class
+/stats/stats-dto/target/classes/ru/practicum/dto/EndpointHitDto.class
+/stats/stats-server/target/classes/ru/practicum/endpoint/EndpointHitMapper.class
+/stats/stats-server/target/classes/schema.sql
+/stats/stats-server/target/classes/ru/practicum/Stats.class
+/stats/stats-server/target/classes/ru/practicum/endpoint/StatsController.class
+/stats/stats-server/target/classes/ru/practicum/endpoint/StatsRepository.class
+/stats/stats-server/target/classes/ru/practicum/endpoint/StatsServiceImpl.class
+/stats/stats-dto/target/classes/ru/practicum/dto/ViewStatsDto$ViewStatsDtoBuilder.class
+/stats/stats-dto/target/classes/ru/practicum/dto/ViewStatsDto.class

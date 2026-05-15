@@ -1,5 +1,6 @@
 package ru.practicum.endpoint;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,11 +27,13 @@ public class StatsController {
     }
 
     @GetMapping("/stats")
-    public List<ViewStatsDto> getStats(@RequestParam (name = "start") String start,
-                        @RequestParam (name = "end") String end,
-                        @RequestParam (name = "uris", required = false) List<String> uris,
-                        @RequestParam (name = "unique") boolean unique) {
+    public List<ViewStatsDto> getStats(@RequestParam(name = "start") String start,
+                                       @RequestParam(name = "end") String end,
+                                       @RequestParam(name = "uris", required = false) List<String> uris,
+                                       @RequestParam(name = "unique") boolean unique,
+                                       HttpServletRequest request) {
         log.info("Получен запрос на получение статистики");
+        System.out.println(request.getRequestURL().append("?").append(request.getQueryString()));
         List<ViewStatsDto> viewStatsDto = statsServiceImpl.getStats(start, end, uris, unique);
         log.info("Статистика успешно получена");
         return viewStatsDto;

@@ -10,4 +10,5 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
     List<EndpointHit> findByUriInAndTimestampBetween(List<String> uris, LocalDateTime start, LocalDateTime end);
 
     List<EndpointHit> findByTimestampBetween(LocalDateTime start, LocalDateTime end);
+
 }

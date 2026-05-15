@@ -33,19 +33,24 @@ public class StatsClient {
     }
 
     public ResponseEntity<List<ViewStatsDto>> getStats(String start, String end, List<String> uris, boolean unique) {
-
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/stats")
                 .queryParam("start", start)
                 .queryParam("end", end)
-                .queryParam("unique", unique)
-                .queryParam("uris", uris);
+                .queryParam("unique", unique);
+
+        if (uris != null && !uris.isEmpty()) {
+            // Склеиваем список в строку через запятую, если сервер ждет один параметр
+            builder.queryParam("uris", String.join(",", uris));
+        }
+
+        // .build(false).toUriString() сохранит строку "как есть"
+        String url = builder.build(false).toUriString();
 
         return restTemplate.exchange(
-                builder.toUriString(),
+                url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>() {
-                }
+                new ParameterizedTypeReference<List<ViewStatsDto>>() {}
         );
     }
 }
