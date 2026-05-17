@@ -23,7 +23,10 @@
 <span style="color: #cf222e; font-weight: bold;">   -│   │   │   └── service/EventServiceImpl.java (Логика + вызовы StatsClient)</span>
 <span style="color: #cf222e; font-weight: bold;">   -│   │   ├── users (Пользователи)</span>
 <span style="color: #cf222e; font-weight: bold;">   -│   │   │   ├── controller/AdminUserController.java (GET, POST, DELETE /admin/users)</span>
-<span style="color: #cf222e; font-weight: bold;">   -│   │   │   └── model/User.java (@Entity)</span>
+<span style="color: #cf222e; font-weight: bold;">   -│   │   │   ├── model/User.java (@Entity)</span>
+<span style="color: #cf222e; font-weight: bold;">   -│   │   │   ├── dto/UserDto.java, UserMapper.java
+<span style="color: #cf222e; font-weight: bold;">   -│   │   │   ├── repository/UserRepository.java
+<span style="color: #cf222e; font-weight: bold;">   -│   │   │   └── service/UserService.java
 <span style="color: #cf222e; font-weight: bold;">   -│   │   ├── requests (Заявки на участие)</span>
 <span style="color: #cf222e; font-weight: bold;">   -│   │   │   ├── controller/PrivateRequestController.java (GET, POST, PATCH /users/{userId}/requests)</span>
 <span style="color: #cf222e; font-weight: bold;">   -│   │   │   └── model/ParticipationRequest.java (@Entity)</span>
@@ -35,7 +38,7 @@
 <span style="color: #cf222e; font-weight: bold;">   -│   └── src/main/resources</span>
 <span style="color: #cf222e; font-weight: bold;">   -│       ├── schema.sql (Схема БД: users, categories, events, requests, compilations)</span>
 <span style="color: #cf222e; font-weight: bold;">   -│       └── application.properties (Настройки порта 8080 и подключения к DB)</span>
-<span style="color: #cf222e; font-weight: bold;">   -│
+<span style="color: #cf222e; font-weight: bold;">   -│</span>
 <span style="color: #0969da; font-weight: bold;">   +├── stats-server (Микросервис статистики)</span>
 <span style="color: #2ea44f; font-weight: bold;">   +│   ├── pom.xml (Агрегатор модулей статистики: dto, client, server)</span>
 <span style="color: #2ea44f; font-weight: bold;">   +│   │</span>
