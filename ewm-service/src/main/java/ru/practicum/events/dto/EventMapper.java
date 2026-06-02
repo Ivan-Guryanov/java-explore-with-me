@@ -1,22 +1,12 @@
 package ru.practicum.events.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.dto.CategoryMapper;
 import ru.practicum.categories.model.Category;
-import ru.practicum.categories.service.CategoryService;
 import ru.practicum.events.model.Event;
-import ru.practicum.events.model.Location;
-import ru.practicum.events.model.State;
-import ru.practicum.user.dto.NewUserDto;
 import ru.practicum.user.dto.UserMapper;
-import ru.practicum.user.dto.UserShortDto;
-import ru.practicum.user.model.User;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

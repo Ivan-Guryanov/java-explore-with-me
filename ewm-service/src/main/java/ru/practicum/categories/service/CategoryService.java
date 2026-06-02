@@ -9,6 +9,7 @@ import ru.practicum.categories.dto.CategoryMapper;
 import ru.practicum.categories.dto.NewCategorytDto;
 import ru.practicum.categories.model.Category;
 import ru.practicum.categories.repository.CategoryRepository;
+import ru.practicum.exception.ConflictException;
 import ru.practicum.exception.NotFoundException;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public class CategoryService {
 
     @Transactional
     public CategoryDto createCategory(NewCategorytDto category) {
+
+        if (categoryRepository.existsByName(category.getName())) {
+            throw new ConflictException("Категория с названием '" + category.getName() + "' уже существует.");
+        }
         return CategoryMapper.mapToCategoryDto(categoryRepository.save(CategoryMapper.mapToCategory(category)));
     }
 
@@ -45,6 +50,9 @@ public class CategoryService {
 
     @Transactional
     public CategoryDto patchCategory(Long catId, NewCategorytDto c) {
+        if (categoryRepository.existsByNameAndIdNot(c.getName(), catId)) {
+            throw new ConflictException("Категория с названием '" + c.getName() + "' уже существует.");
+        }
         Category category = CategoryMapper.mapToCategory(c);
         category.setId(catId);
         return CategoryMapper.mapToCategoryDto(categoryRepository.save(category));

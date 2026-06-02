@@ -2,6 +2,8 @@ package ru.practicum.events.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import ru.practicum.events.model.Location;
@@ -31,13 +33,14 @@ public class NewEventDto {
     @NotBlank
     private String eventDate;
 
-    @NotBlank
+    @NotNull
     private Location location;
 
     @Builder.Default
     private boolean paid = false;
 
     @Builder.Default
+    @PositiveOrZero
     private Integer participantLimit = 0;
 
     @Builder.Default

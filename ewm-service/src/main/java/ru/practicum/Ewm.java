@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ewm {
+public class Ewm {
 
     public static void main(String[] args) {
-        SpringApplication.run(ewm.class, args);
+        SpringApplication.run(Ewm.class, args);
     }
 
 }

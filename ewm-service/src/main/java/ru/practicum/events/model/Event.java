@@ -33,7 +33,8 @@ public class Event {
     private Category category; //    Категория
 
     @Column(name = "confirmed_requests")
-    private Long confirmedRequests; //Количество одобренных заявок на участие в данном событии
+    @Builder.Default
+    private Long confirmedRequests = 0L; //Количество одобренных заявок на участие в данном событии
 
     @Column(name = "created_on")
     private LocalDateTime createdOn; //Дата и время создания события (в формате "yyyy-MM-dd HH:mm:ss")

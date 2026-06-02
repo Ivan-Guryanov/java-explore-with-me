@@ -1,18 +1,13 @@
 package ru.practicum.events.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.categories.dto.CategoryDto;
-import ru.practicum.categories.model.Category;
 import ru.practicum.events.model.Location;
 import ru.practicum.events.model.State;
 import ru.practicum.user.dto.UserShortDto;
-import ru.practicum.user.model.User;
-
-import java.time.LocalDateTime;
 
 @Builder
 @NoArgsConstructor

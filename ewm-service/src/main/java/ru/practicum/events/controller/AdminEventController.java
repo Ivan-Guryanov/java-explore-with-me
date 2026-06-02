@@ -22,11 +22,11 @@ public class AdminEventController {
     @GetMapping
     public List<EventFullDto> findEventsByParam(@RequestParam(name = "users", required = false) List<Long> usersId,
                                          @RequestParam(name = "states", required = false) List<String> states,
-                                         @RequestParam(name ="categories", required = false) List<Long> categoriesId,
-                                         @RequestParam(name ="rangeStart", required = false) String rangeStart,
-                                         @RequestParam(name ="rangeEnd", required = false) String rangeEnd,
-                                         @RequestParam(name ="from", required = false) Long from,
-                                         @RequestParam(name ="size", required = false) Long size,
+                                         @RequestParam(name = "categories", required = false) List<Long> categoriesId,
+                                         @RequestParam(name = "rangeStart", required = false) String rangeStart,
+                                         @RequestParam(name = "rangeEnd", required = false) String rangeEnd,
+                                         @RequestParam(name = "from", defaultValue = "0") Long from,
+                                         @RequestParam(name = "size", defaultValue = "10") Long size,
                                          HttpServletRequest request) {
         log.info("Получен запрос на получение списка событий по параметрам");
         List<EventFullDto> events = eventService.findEventsByParam(usersId, states, categoriesId, rangeStart, rangeEnd, from, size);
@@ -36,8 +36,8 @@ public class AdminEventController {
 
     @PatchMapping("/{eventId}")
     public EventFullDto updateEventAdmin(@PathVariable Long eventId,
-                                         @RequestBody @Valid UpdateEventAdminRequest e) {
-        log.info("Получен запрос от админа на обновление фильма id{}", eventId);
+                                         @RequestBody(required = false) @Valid UpdateEventAdminRequest e) {
+        log.info("Получен запрос от админа на обновление события id{}", eventId);
         EventFullDto event = eventService.updateEventAdmin(eventId, e);
         log.info("Событие id{} успешно обновлено", event.getId());
         return event;

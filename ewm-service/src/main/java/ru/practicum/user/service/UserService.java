@@ -26,7 +26,7 @@ public class UserService {
     @Transactional
     public List<UserDto> getUsers(List<Long> ids, Long from, Long size) {
 
-        if(ids !=null && !ids.isEmpty()) {
+        if (ids != null && !ids.isEmpty()) {
             return userRepository.findAllById(ids, from, size).stream()
                     .map(UserMapper::mapToUserDto)
                     .collect(Collectors.toList());
