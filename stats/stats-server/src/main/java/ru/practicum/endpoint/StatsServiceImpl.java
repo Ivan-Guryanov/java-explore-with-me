@@ -27,6 +27,13 @@ public class StatsServiceImpl {
         LocalDateTime startTime = LocalDateTime.parse(start, FORMATTER);
         LocalDateTime endTime = LocalDateTime.parse(end, FORMATTER);
 
+        if (startTime.isAfter(endTime)) {
+            throw new org.springframework.web.server.ResponseStatusException(
+                    org.springframework.http.HttpStatus.BAD_REQUEST,
+                    "Дата начала не может быть позже даты окончания"
+            );
+        }
+
         List<ViewStatsDto> getStats;
 
 
