@@ -42,7 +42,7 @@ public class RequestService {
         if (event.getState() == State.CANCELED || event.getState() == State.PENDING) {
             throw new ConflictException("Нельзя участвовать в неопубликованном событии.");
         }
-        if ((int)event.getParticipantLimit() <= event.getConfirmedRequests() && event.getParticipantLimit() != 0) {
+        if ((int) event.getParticipantLimit() <= event.getConfirmedRequests() && event.getParticipantLimit() != 0) {
             throw new ConflictException("Достигнут лимин участников.");
         }
         RequestStatus status;
@@ -90,5 +90,4 @@ public class RequestService {
         requestRepository.save(r);
         return RequestMapper.mapToParticipationRequestDto(r);
     }
-
 }
