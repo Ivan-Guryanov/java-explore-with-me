@@ -1,9 +1,11 @@
 package ru.practicum.categories.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.dto.NewCategorytDto;
@@ -14,6 +16,7 @@ import ru.practicum.categories.service.CategoryService;
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin
+@Validated
 public class AdminCategoryController {
     private final CategoryService  categoryService;
 
@@ -28,14 +31,14 @@ public class AdminCategoryController {
 
     @DeleteMapping("/{catId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCategory(@PathVariable Long catId) {
+    public void deleteCategory(@PathVariable @Positive Long catId) {
         log.info("Получен запрос на удаление категории id{}.", catId);
         categoryService.deleteCategory(catId);
         log.info("Категория с id{} успешно удален.", catId);
     }
 
     @PatchMapping("/{catId}")
-    public CategoryDto patchCategory(@PathVariable Long catId,
+    public CategoryDto patchCategory(@PathVariable @Positive Long catId,
                                      @RequestBody @Valid NewCategorytDto c) {
         log.info("Получен запрос на обновление категории id{}", catId);
         CategoryDto category = categoryService.patchCategory(catId, c);

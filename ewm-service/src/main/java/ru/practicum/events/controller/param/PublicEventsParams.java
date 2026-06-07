@@ -30,8 +30,8 @@ public class PublicEventsParams {
     private EventSort sort;
 
     @PositiveOrZero
-    int from = 0;
+    private int from = 0;
 
     @Positive
-    int size = 10;
+    private int size = 10;
 }

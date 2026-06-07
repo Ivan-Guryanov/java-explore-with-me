@@ -1,6 +1,7 @@
 package ru.practicum.compilations.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import ru.practicum.compilations.service.CompilationsService;
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin
+@Positive
 public class AdminCompController {
     private final CompilationsService compilationsService;
 
@@ -29,14 +31,14 @@ public class AdminCompController {
 
     @DeleteMapping("/{compId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCompilation(@PathVariable Long compId) {
+    public void deleteCompilation(@PathVariable @Positive Long compId) {
         log.info("Получен запрос на удаление подборки событий id{}", compId);
         compilationsService.deleteCompilation(compId);
         log.info("Событие id{} успешно удалено.", compId);
     }
 
     @PatchMapping("/{compId}")
-    public CompilationDto updateCompilation(@PathVariable Long compId,
+    public CompilationDto updateCompilation(@PathVariable @Positive Long compId,
                                             @RequestBody @Valid UpdateCompilationDto c) {
         log.info("Получен запрос на обновление подборки событий id{}", compId);
         CompilationDto compilationDto = compilationsService.updateCompilation(compId, c);

@@ -23,7 +23,7 @@ public class UserService {
         return UserMapper.mapToUserDto(userRepository.save(UserMapper.mapToUser(u)));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<UserDto> getUsers(List<Long> ids, Long from, Long size) {
 
         if (ids != null && !ids.isEmpty()) {
@@ -43,6 +43,7 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
+    @Transactional(readOnly = true)
     public User getUserById(Long userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("User with id=" + userId + " was not found"));

@@ -57,7 +57,7 @@ public class EventService {
         return EventMapper.mapToEventFullDto(eventRepository.save(event));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<EventFullDto> findEventsByParam(List<Long> usersId, List<String> states, List<Long> categoriesId,
                                                 String rangeStart, String rangeEnd,
                                                 Long from, Long size) {
@@ -149,12 +149,13 @@ public class EventService {
         return EventMapper.mapToEventFullDto(eventRepository.save(event));
     }
 
+    @Transactional(readOnly = true)
     public Event findById(Long id) {
         return eventRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User with id=" + id + " was not found"));
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<EventShortDto> findEventByUser(Long userId, Long from, Long size) {
         int page = (int) (from / size);
         int pageSize = size.intValue();
@@ -165,7 +166,7 @@ public class EventService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<EventShortDto> getEventsByPublic(PublicEventsParams params) {
         LocalDateTime rangeStart = params.getRangeStart();
         LocalDateTime rangeEnd = params.getRangeEnd();
@@ -226,7 +227,7 @@ public class EventService {
         return EventMapper.mapToEventFullDto(event);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public EventFullDto privateFindById(Long id) {
         Event event = findById(id);
         eventRepository.save(event);

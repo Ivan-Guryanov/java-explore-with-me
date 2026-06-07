@@ -66,7 +66,7 @@ public class RequestService {
         return RequestMapper.mapToParticipationRequestDto(r);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ParticipationRequestDto> findRequestsByRequester(Long userId) {
         List<ParticipationRequest> r = requestRepository.findByRequesterId(userId);
         return r.stream()
@@ -74,7 +74,7 @@ public class RequestService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ParticipationRequestDto> findRequestByEvent(Long eventId) {
         List<ParticipationRequest> r = requestRepository.findByEventId(eventId);
         return r.stream()

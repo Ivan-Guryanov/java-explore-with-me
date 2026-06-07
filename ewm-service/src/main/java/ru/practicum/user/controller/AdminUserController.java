@@ -1,9 +1,12 @@
 package ru.practicum.user.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.user.dto.UserDto;
 import ru.practicum.user.dto.NewUserDto;
@@ -16,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin
+@Validated
 public class AdminUserController {
     private final UserService userService;
 
@@ -31,8 +35,8 @@ public class AdminUserController {
     @GetMapping
     public List<UserDto> getUsers(
             @RequestParam(required = false) List<Long> ids,
-            @RequestParam(defaultValue = "0") Long from,
-            @RequestParam(defaultValue = "10") Long size) {
+            @RequestParam(defaultValue = "0") @PositiveOrZero Long from,
+            @RequestParam(defaultValue = "10") @Positive Long size) {
         log.info("Получен запрос на получение списка пользователей.");
         List<UserDto> users = userService.getUsers(ids, from, size);
         log.info("Список пользователей успешно получен.");
@@ -41,7 +45,7 @@ public class AdminUserController {
 
     @DeleteMapping("/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long userId) {
+    public void deleteUser(@PathVariable @Positive Long userId) {
         log.info("Получен запрос на удаление пользователя id{}", userId);
         userService.deleteUser(userId);
         log.info("Юзер с id{} успешно удален.", userId);

@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.compilations.dto.CompilationDto;
 import ru.practicum.compilations.service.CompilationsService;
@@ -15,11 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin
+@Validated
 public class PublicCompController {
     private final CompilationsService compilationsService;
 
     @GetMapping("/{compId}")
-    public CompilationDto findCompilationById(@PathVariable Long compId) {
+    public CompilationDto findCompilationById(@PathVariable @Positive Long compId) {
         log.info("Получен запрос на получение подборки событий id{}", compId);
         CompilationDto c = compilationsService.findCompilationById(compId);
         log.info("Подборка событий id{} успешно получена", c.getId());

@@ -2,8 +2,10 @@ package ru.practicum.events.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.events.controller.param.PublicEventsParams;
 import ru.practicum.events.dto.EventFullDto;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(path = "/events")
 @CrossOrigin
+@Validated
 public class PublicEventController {
     private final EventService eventService;
 
@@ -30,7 +33,7 @@ public class PublicEventController {
     }
 
     @GetMapping("/{id}")
-    public EventFullDto findById(@PathVariable Long id) {
+    public EventFullDto findById(@PathVariable @Positive Long id) {
         log.info("Получен запрос на получение события с id{}", id);
         EventFullDto event = eventService.publicFindByIdPlusView(id);
         log.info("Событие с id{} успешно получено", event.getId());

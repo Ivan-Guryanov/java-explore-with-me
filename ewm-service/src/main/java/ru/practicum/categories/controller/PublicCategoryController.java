@@ -1,7 +1,9 @@
 package ru.practicum.categories.controller;
 
+import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.categories.dto.CategoryDto;
 import ru.practicum.categories.service.CategoryService;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin
+@Validated
 public class PublicCategoryController {
     private final CategoryService categoryService;
 
@@ -27,7 +30,7 @@ public class PublicCategoryController {
     }
 
     @GetMapping("/{catId}")
-    public CategoryDto getCategoriesById(@PathVariable Long catId) {
+    public CategoryDto getCategoriesById(@PathVariable @Positive Long catId) {
         log.info("Получен запрос на получение категории с Id{}", catId);
         CategoryDto cat = categoryService.getCategoriesById(catId);
         log.info("Категория с Id{} успешно получена.", cat.getId());

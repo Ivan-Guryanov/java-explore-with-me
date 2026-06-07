@@ -36,7 +36,7 @@ public class CompilationsService {
         return CompilationsMapper.mapToCompilationDto(compilation);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public CompilationDto findCompilationById(Long compId) {
         Compilation c = compilationsRepository.findById(compId)
                 .orElseThrow(() -> new NotFoundException("Compilation with id=" + compId + " was not found"));
@@ -44,7 +44,7 @@ public class CompilationsService {
         return CompilationsMapper.mapToCompilationDto(c);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<CompilationDto> findCompilationByParam(Boolean pinned, int from, int size) {
 
         return compilationsRepository.findByPinned(pinned, from, size).stream()
