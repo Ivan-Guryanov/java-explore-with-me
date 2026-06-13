@@ -1,6 +1,8 @@
 # java-explore-with-me (Афиша). 
 В этом приложение можно предложить какое-либо событие от выставки до похода в кино и собрать компанию для участия в нём.
 
+Ссылка на пулреквест - https://github.com/Ivan-Guryanov/java-explore-with-me/pull/7
+
 Структура проекта с отметками о выполнение:
 
 <pre>
@@ -50,7 +52,7 @@
 <span style="color: #2ea44f; font-weight: bold;">   +│   │   │   └── service/CompilationsService.java
 <span style="color: #2ea44f; font-weight: bold;">   +│   │   ├── exception</span>
 <span style="color: #2ea44f; font-weight: bold;">   +│   │   │   └── ErrorHandler.java (@RestControllerAdvice)</span>
-<span style="color: #cf222e; font-weight: bold;">   -│   │   └── Спецвопрос (на выбор)</span>
+<span style="color: #2ea44f; font-weight: bold;">   -│   │   └── Спецвопрос (комментарии к событиям)</span>
 <span style="color: #2ea44f; font-weight: bold;">   +│   └── src/main/resources</span>
 <span style="color: #2ea44f; font-weight: bold;">   +│       ├── schema.sql (Схема БД: users, categories, events, requests, compilations)</span>
 <span style="color: #2ea44f; font-weight: bold;">   +│       └── application.properties (Настройки порта 8080 и подключения к DB)</span>
