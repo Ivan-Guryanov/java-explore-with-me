@@ -54,7 +54,7 @@ public class CommentService {
         return CommentMapper.mapToCommentDto(commentRepository.save(com));
     }
 
-    @Transactional(readOnly = true)
+
     public CommentDto findCommentById(@PathVariable @Positive Long userId,
                                       @PathVariable @Positive Long comId) {
         Comment comment = findById(comId);
@@ -64,7 +64,7 @@ public class CommentService {
         return CommentMapper.mapToCommentDto(comment);
     }
 
-    @Transactional(readOnly = true)
+
     public Comment findById(Long id) {
         return commentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Комментарий с id=" + id + " не найден"));
@@ -93,7 +93,7 @@ public class CommentService {
         commentRepository.delete(comment);
     }
 
-    @Transactional
+
     public List<CommentFullDto> findCommentByEvent(Long eventId) {
         List<Comment> com = commentRepository.findAllByEventId(eventId);
 
